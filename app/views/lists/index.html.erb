@@ -1,0 +1,51 @@
+<p>
+  <%= flash[:notice] %>
+</p>
+
+
+<h1>Books</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Body</th>
+      </tr>
+    </thead>
+      
+    <tbody>
+      <% @lists.each do |list| %>
+      <tr>
+        <th><%= list.title %></th>
+        <th><%= list.body %></th>
+        <th><%= link_to "Show", list_path(list.id) %></th>
+        <th><%= link_to "Edit", edit_list_path(list.id) %></th>
+        <th><%= link_to "Destroy", destroy_list_path(list.id), method: :delete, "data-confirm" => "Are you sure？" %></th>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+
+
+
+
+
+
+
+
+
+
+
+---------------------------------------------
+<h2>New book</h2>
+
+ <%= form_with model: List.new do |f| %>
+
+  <h4>Title</h4>
+  <%= f.text_field :title %>
+	
+  <h4>Body</h4>
+  <%= f.text_area :body %>
+	
+  <%= f.submit 'Create Book' %>
+<% end %>
